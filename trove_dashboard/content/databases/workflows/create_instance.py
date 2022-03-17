@@ -254,6 +254,7 @@ class SetInstanceDetailsAction(workflows.Action):
                                                datastore,
                                                datastore_version)
         if valid_flavors:
+            valid_flavors = ([("", _(" - "))] + valid_flavors)
             self.fields[field_name].choices = instance_utils.sort_flavor_list(
                 request, valid_flavors)
 
