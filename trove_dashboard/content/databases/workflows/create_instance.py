@@ -440,7 +440,7 @@ class AdvancedAction(workflows.Action):
         try:
             instances = self._get_instances()
             choices = sorted([(i.id, i.name) for i in
-                             instances if i.status == 'ACTIVE'],
+                             instances if i.status == 'HEALTHY'],
                              key=lambda i: i[1])
         except Exception:
             choices = []
