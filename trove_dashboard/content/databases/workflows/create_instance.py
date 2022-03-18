@@ -593,7 +593,7 @@ class LaunchInstance(workflows.Workflow):
                      "backups=%s, nics=%s, replica_of=%s replica_count=%s, "
                      "configuration=%s, locality=%s, "
                      "availability_zone=%s}",
-                     context['name'], context['volume'] if not context.get('master') else None,
+                     context['name'], context['volume'] if not context.get('master') else 0,
                      self._get_volume_type(context), context['flavor'],
                      datastore if not context.get('master') else None, 
                      datastore_version if not context.get('master') else None,
@@ -604,7 +604,7 @@ class LaunchInstance(workflows.Workflow):
                      avail_zone)
             api.trove.instance_create(request,
                                       context['name'],
-                                      context['volume'] if not context.get('master') else None,
+                                      context['volume'] if not context.get('master') else 0,
                                       context['flavor'] if not context.get('master') else None,
                                       datastore=datastore if not context.get('master') else None,
                                       datastore_version=datastore_version if not context.get('master') else None,
