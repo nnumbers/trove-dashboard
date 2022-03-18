@@ -254,7 +254,6 @@ class SetInstanceDetailsAction(workflows.Action):
                                                datastore,
                                                datastore_version)
         if valid_flavors:
-            valid_flavors = ([("", _(" - "))] + valid_flavors)
             self.fields[field_name].choices = instance_utils.sort_flavor_list(
                 request, valid_flavors)
 
@@ -605,7 +604,7 @@ class LaunchInstance(workflows.Workflow):
             api.trove.instance_create(request,
                                       context['name'],
                                       context['volume'],
-                                      context['flavor'],
+                                      context['flavor'] if not context.get('master') else "",
                                       datastore=datastore,
                                       datastore_version=datastore_version,
                                       databases=self._get_databases(context),
