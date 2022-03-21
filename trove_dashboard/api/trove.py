@@ -384,7 +384,7 @@ def log_discard(request, instance_id, log_name):
                                                      discard=True)
 
 
-def log_tail(request, instance_id, log_name, lines, swift=None):
+def log_tail(request, instance_id, log_name, publish, lines, swift=None):
     return troveclient(request).instances.log_generator(instance_id,
                                                         log_name,
                                                         lines=lines,
