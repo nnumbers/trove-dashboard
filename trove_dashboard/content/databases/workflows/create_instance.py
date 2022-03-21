@@ -29,6 +29,8 @@ from oslo_log import log as logging
 
 
 from trove_dashboard import api
+from trove_dashboard.content.databases \
+    import tables as project_tables
 from trove_dashboard.utils import common as common_utils
 
 LOG = logging.getLogger(__name__)
@@ -440,7 +442,7 @@ class AdvancedAction(workflows.Action):
         try:
             instances = self._get_instances()
             choices = sorted([(i.id, i.name) for i in
-                             instances if i.status == 'HEALTHY'],
+                             instances if i.status in project_tables.ACTIVE_STATES],
                              key=lambda i: i[1])
         except Exception:
             choices = []
